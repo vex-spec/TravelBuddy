@@ -18,11 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.abigael.travelbuddy.R
 import com.abigael.travelbuddy.ui.theme.newblack
 
 @Composable
-fun SplashScreenScreen(){
+fun SplashScreenScreen(navController: NavController){
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -63,7 +65,7 @@ fun SplashScreenScreen(){
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview(){
-    SplashScreenScreen()
+    SplashScreenScreen(rememberNavController())
 
 
 }
