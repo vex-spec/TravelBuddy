@@ -10,12 +10,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.abigael.travelbuddy.ui.screens.SplashScreenScreen
 import com.abigael.travelbuddy.ui.screens.booking.BookingScreen
+import com.abigael.travelbuddy.ui.screens.cars.CarScreen
 
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_SPLASH
+    startDestination: String = ROUT_CARS
 ) {
 
 
@@ -31,6 +32,10 @@ fun AppNavHost(
 
         composable(ROUT_BOOKING) {
             BookingScreen(navController)
+
+        }
+        composable(ROUT_CARS) {
+            CarScreen(navController)
 
         }
 
