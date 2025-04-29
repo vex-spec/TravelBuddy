@@ -17,13 +17,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -34,8 +37,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -49,6 +54,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,6 +63,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.abigael.travelbuddy.R
 import com.abigael.travelbuddy.navigations.ROUT_BOOKING
+import com.abigael.travelbuddy.navigations.ROUT_LUXURY
 import com.abigael.travelbuddy.ui.theme.newgreen
 import com.abigael.travelbuddy.ui.theme.newwhite
 
@@ -128,14 +135,91 @@ fun CarScreen(navController: NavController){
                     .fillMaxSize()
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "33 seaters section",
-                    textAlign = TextAlign.Center,
-                    fontSize = 20.sp,
-                    fontFamily = FontFamily.Serif,
-                    modifier = Modifier.padding(start = 50.dp)
+                //searchBar
+                var search by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = search,
+                    onValueChange = { search = it },
+                    modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
+                    leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
+                    placeholder = { Text(text = "Search...") }
                 )
+                //End of searchBar
+                Spacer(modifier = Modifier.height(10.dp))
 
+              Column (modifier = Modifier.horizontalScroll(rememberScrollState())){
+                  Row (){
+                      //TextButton
+                      TextButton(onClick = { navController.navigate(ROUT_LUXURY) }
+                      ) {
+                          Text(
+                              "Luxury cars",
+                              modifier = Modifier.padding(start = 20.dp),
+                              color = Color.Black,
+                              fontSize = 15.sp
+                          )
+                      }
+
+                      //End of text button
+
+
+                      //TextButton
+                      TextButton(onClick = { navController.navigate(ROUT_LUXURY) }
+                      ) {
+                          Text(
+                              "Latest Brands",
+                              modifier = Modifier.padding(start = 20.dp),
+                              color = Color.Black,
+                              fontSize = 15.sp
+                          )
+                      }
+
+                      //End of text button
+
+
+                      //TextButton
+                      TextButton(onClick = { navController.navigate(ROUT_LUXURY) }
+                      ) {
+                          Text(
+                              "Luxury cars",
+                              modifier = Modifier.padding(start = 20.dp),
+                              color = Color.Black,
+                              fontSize = 15.sp
+                          )
+                      }
+
+                      //End of text button
+
+
+                      //TextButton
+                      TextButton(onClick = { navController.navigate(ROUT_LUXURY) }
+                      ) {
+                          Text(
+                              "Luxury cars",
+                              modifier = Modifier.padding(start = 20.dp),
+                              color = Color.Black,
+                              fontSize = 15.sp
+                          )
+                      }
+
+                      //End of text button
+
+
+                      //TextButton
+                      TextButton(onClick = { navController.navigate(ROUT_LUXURY) }
+                      ) {
+                          Text(
+                              "Luxury cars",
+                              modifier = Modifier.padding(start = 20.dp),
+                              color = Color.Black,
+                              fontSize = 15.sp
+                          )
+                      }
+
+                      //End of text button
+                  }
+              }
+                Spacer(modifier = Modifier.height(10.dp))
                 Column(modifier = Modifier.horizontalScroll(rememberScrollState())) {
                     Box (){
                         Row (){
@@ -400,22 +484,278 @@ fun CarScreen(navController: NavController){
                             }//end of card1
 
 
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(15.dp))
+
+                    Box (){
+                        Row (){
+
+                            //Card 1
+                            Card (
+                                modifier = Modifier.width(190.dp).height(200.dp) .padding(start = 20.dp),
+                                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp, topStart = 20.dp, topEnd = 20.dp),
+                                colors = CardDefaults.cardColors(),
+
+                                ){
+                                Column (
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.img_7),
+                                        contentDescription = "graph",
+                                        modifier = Modifier.size(150.dp)
+                                            .background(color = newwhite)
 
 
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+                                    //MPESA
+                                    Button(
+                                        onClick = {
+                                            val simToolKitLaunchIntent =
+                                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(Color.Black),
+                                        shape = RoundedCornerShape(10.dp),
+                                        modifier = Modifier.fillMaxWidth().padding(start =20.dp, end=20.dp ),
+
+                                        ){
+                                        Text(text = "BOOK NOW")
+                                    }
+                                    //END OF MPESA
+                                }
+                            }//end of card1
+                            Spacer(modifier = Modifier.width(5.dp))
 
 
+                            //card2
+                            Card (
+                                modifier = Modifier.width(190.dp).height(200.dp) .padding(start = 20.dp),
+                                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp, topStart = 20.dp, topEnd = 20.dp),
+                                colors = CardDefaults.cardColors(),
+
+                                ){
+                                Column (
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.img_14),
+                                        contentDescription = "graph",
+                                        modifier = Modifier.size(150.dp)
+                                            .background(color = newwhite)
 
 
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+                                    //MPESA
+                                    Button(
+                                        onClick = {
+                                            val simToolKitLaunchIntent =
+                                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(Color.Black),
+                                        shape = RoundedCornerShape(10.dp),
+                                        modifier = Modifier.fillMaxWidth().padding(start =20.dp, end=20.dp ),
+
+                                        ){
+                                        Text(text = "BOOK NOW")
+                                    }
+                                    //END OF MPESA
+                                }
+                            }//end of card1
 
 
+                            Spacer(modifier = Modifier.width(5.dp))
 
 
+                            //card2
+                            Card (
+                                modifier = Modifier.width(190.dp).height(200.dp) .padding(start = 20.dp),
+                                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp, topStart = 20.dp, topEnd = 20.dp),
+                                colors = CardDefaults.cardColors(),
+
+                                ){
+                                Column (
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.img_12),
+                                        contentDescription = "graph",
+                                        modifier = Modifier.size(150.dp)
+                                            .background(color = newwhite)
 
 
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+                                    //MPESA
+                                    Button(
+                                        onClick = {
+                                            val simToolKitLaunchIntent =
+                                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(Color.Black),
+                                        shape = RoundedCornerShape(10.dp),
+                                        modifier = Modifier.fillMaxWidth().padding(start =20.dp, end=20.dp ),
+
+                                        ){
+                                        Text(text = "BOOK NOW")
+                                    }
+                                    //END OF MPESA
+                                }
+                            }//end of card1
+
+
+                            Spacer(modifier = Modifier.width(5.dp))
+
+
+                            //card2
+                            Card (
+                                modifier = Modifier.width(190.dp).height(200.dp) .padding(start = 20.dp),
+                                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp, topStart = 20.dp, topEnd = 20.dp),
+                                colors = CardDefaults.cardColors(),
+
+                                ){
+                                Column (
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.img_13),
+                                        contentDescription = "graph",
+                                        modifier = Modifier.size(150.dp)
+                                            .background(color = newwhite)
+
+
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+                                    //MPESA
+                                    Button(
+                                        onClick = {
+                                            val simToolKitLaunchIntent =
+                                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(Color.Black),
+                                        shape = RoundedCornerShape(10.dp),
+                                        modifier = Modifier.fillMaxWidth().padding(start =20.dp, end=20.dp ),
+
+                                        ){
+                                        Text(text = "BOOK NOW")
+                                    }
+                                    //END OF MPESA
+                                }
+                            }//end of card1
+
+                            //card3
+                            Spacer(modifier = Modifier.width(5.dp))
+
+
+                            //card2
+                            Card (
+                                modifier = Modifier.width(190.dp).height(200.dp) .padding(start = 20.dp),
+                                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp, topStart = 20.dp, topEnd = 20.dp),
+                                colors = CardDefaults.cardColors(),
+
+                                ){
+                                Column (
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.img_2),
+                                        contentDescription = "graph",
+                                        modifier = Modifier.size(150.dp)
+                                            .background(color = newwhite)
+
+
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+                                    //MPESA
+                                    Button(
+                                        onClick = {
+                                            val simToolKitLaunchIntent =
+                                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(Color.Black),
+                                        shape = RoundedCornerShape(10.dp),
+                                        modifier = Modifier.fillMaxWidth().padding(start =20.dp, end=20.dp ),
+
+                                        ){
+                                        Text(text = "BOOK NOW")
+                                    }
+                                    //END OF MPESA
+                                }
+                            }//end of card1
+
+                            //card4
+
+                            Spacer(modifier = Modifier.width(5.dp))
+
+
+                            //card2
+                            Card (
+                                modifier = Modifier.width(190.dp).height(200.dp) .padding(start = 20.dp),
+                                shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp, topStart = 20.dp, topEnd = 20.dp),
+                                colors = CardDefaults.cardColors(),
+
+                                ){
+                                Column (
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center)
+                                {
+                                    Image(
+                                        painter = painterResource(R.drawable.img),
+                                        contentDescription = "graph",
+                                        modifier = Modifier.size(150.dp)
+                                            .background(color = newwhite)
+
+
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+                                    //MPESA
+                                    Button(
+                                        onClick = {
+                                            val simToolKitLaunchIntent =
+                                                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                                            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(Color.Black),
+                                        shape = RoundedCornerShape(10.dp),
+                                        modifier = Modifier.fillMaxWidth().padding(start =20.dp, end=20.dp ),
+
+                                        ){
+                                        Text(text = "BOOK NOW")
+                                    }
+                                    //END OF MPESA
+                                }
+                            }//end of card1
 
 
                         }
                     }
+
+
+
 
 
 
